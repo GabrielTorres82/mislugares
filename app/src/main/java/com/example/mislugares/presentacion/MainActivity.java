@@ -1,8 +1,11 @@
-package com.example.mislugares;
+package com.example.mislugares.presentacion;
 
 import android.os.Bundle;
 
+import com.example.mislugares.R;
+import com.example.mislugares.casos_uso.CasosUsoLugar;
 import com.example.mislugares.databinding.ActivityMainBinding;
+import com.example.mislugares.datos.RepositorioLugares;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -14,17 +17,20 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.mislugares.databinding.ActivityMainBinding;
-
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private RepositorioLugares lugares;
+    private CasosUsoLugar usoLugar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        lugares = ((Aplicacion) getApplication()).lugares;
+        usoLugar = new CasosUsoLugar(this, lugares);
 
+        /////// TOOLBAR ///////////////////
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
